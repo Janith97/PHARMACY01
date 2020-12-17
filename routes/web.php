@@ -19,6 +19,20 @@ Route::get('/', function () {
 
 
 Route::resource('employee','EmployeeController');
-Route::get('/getindexpagetable/', 'EmployeeController@indexpagetable')->name('ajax.indexpagetable');
+Route::get('/getindexpagetable/', 'EmployeeController@indexpagetable')->name('datatable.indexpagetable');
 
+/*theme*/
+
+Route::resource('theme','ThemeController');
+Route::get('/Dashboard2/', 'ThemeController@new2')->name('dashboard.index2');
+Route::get('/Dashboard3/', 'ThemeController@new3')->name('dashboard.index3');
+
+
+/*picture store*/
+
+Route::resource('picturestore','PictureStoreController');
+
+/*Ajax*/
+
+Route::resource('ajax','AjaxController');
 

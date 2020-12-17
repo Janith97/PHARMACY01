@@ -1,6 +1,7 @@
 @extends('layout')
   
 @section('content')
+
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -31,35 +32,35 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>First Name:</strong>
-                <input type="text" name="firstname" class="form-control" placeholder="firstname" value="{{ old('firstname') }}">
+                <input type="text" name="firstname" class="form-control shadow" placeholder="firstname" value="{{ old('firstname') }}">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Last Name:</strong>
-                <input type="text" name="lastname" class="form-control" placeholder="lasstname" value="{{ old('lastname') }}">
+                <input type="text" name="lastname" class="form-control shadow" placeholder="lasstname" value="{{ old('lastname') }}">
             </div>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Age:</strong>
-                <input type="text" name="age" class="form-control" placeholder="age" value="{{ old('age') }}">
+                <input type="text" name="age" class="form-control shadow" placeholder="age" value="{{ old('age') }}">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Address:</strong>
-                <input type="text" name="address" class="form-control" placeholder="address" value="{{ old('lastname') }}">
+                <input type="text" name="address" class="form-control shadow" placeholder="address" value="{{ old('lastname') }}">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>email:</strong>
-                <input type="text" name="email" class="form-control" placeholder="email" value="{{ old('email') }}">
+                <input type="text" name="email" class="form-control shadow" placeholder="email" value="{{ old('email') }}">
             </div>
         </div>
         

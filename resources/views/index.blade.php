@@ -76,7 +76,10 @@
             <th>Age</th>
             <th>Address</th>
             <th>Email</th>
+            <th>Action</th>
         </tr>
+        
+
     </thead>
     <tbody>
         
@@ -85,11 +88,8 @@
 
 <script>
     $(document).ready(function(){
-
-        
-
         $('#table2').DataTable({
-            "ajax":"{!! route('ajax.indexpagetable') !!}",
+            "ajax":"{!! route('datatable.indexpagetable') !!}",
             columns: [
 
                 {data: 'id' , name: 'id'},
@@ -98,9 +98,18 @@
                 {data: 'age' , name: 'age'},
                 {data: 'address' , name: 'address'},
                 {data: 'email' , name: 'email'},
+                {data: 'action' , name: 'action'},
+
+                //{data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
     });
+
+
+    
 </script>
       
+
+
+
 @endsection

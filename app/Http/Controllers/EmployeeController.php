@@ -69,8 +69,9 @@ class EmployeeController extends Controller
      * @param  \App\employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(employee $employee)
+    public function show($id)
     {
+        $employee = employee::find($id);
         return view('show',compact('employee'));
     }
 
@@ -80,8 +81,9 @@ class EmployeeController extends Controller
      * @param  \App\employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(employee $employee)
+    public function edit($id)
     {
+        $employee = employee::find($id);
         return view('edit',compact('employee'));
     }
 
@@ -95,14 +97,17 @@ class EmployeeController extends Controller
     public function update(Request $request, employee $employee)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'firstname' => 'required',
+            'lastname'  => 'required',
+            'age'       => 'required',
+            'address'   => 'required',
+            'email'     => 'required',
         ]);
   
         $employee->update($request->all());
   
-        return redirect()->route('index')
-                        ->with('success','Blog updated successfully');
+        return redirect()->route('employee.index')
+                        ->with('success','updated successfully');
     }
 
     /**
@@ -122,9 +127,20 @@ class EmployeeController extends Controller
 
     public function indexpagetable(){
 
-        $ajaxdata = LearnAjax::all();
+        $ajaxdata = employee::all();  //employee= model name
 
         return Datatables::of($ajaxdata)
+
+        ->addColumn('action', function ($ajaxdata) {
+            $buttons ='<a  class="far fa-edit btn btn-sm btn-primary btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/').'">View</a> 
+            <a class="far fa-edit btn btn-sm btn-success btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/edit').'">Edit</a>
+            <input type="hidden" id="hiddenID" value="'.$ajaxdata->id.'">
+            <button class="far fa-trash-alt btn btn-sm btn-danger btn-rounded m-b-1 m-l-5" id="delete">Delete</button>';
+ 
+           
+            return $buttons;
+        })
+
         ->make(true);
 
 
