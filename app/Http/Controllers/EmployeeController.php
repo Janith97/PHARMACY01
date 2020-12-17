@@ -101,7 +101,7 @@ class EmployeeController extends Controller
             'lastname'  => 'required',
             'age'       => 'required',
             'address'   => 'required',
-            'email'     => 'required',
+            
         ]);
   
         $employee->update($request->all());
