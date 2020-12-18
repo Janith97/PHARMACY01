@@ -103,10 +103,22 @@
                 //{data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-    });
 
+
+
+    });
+    
+
+    // var table = $('#grntable').DataTable();
+    // $('#table2 tbody').on( 'click', '#remove', function () {​​​​​​​​
+    //         table
+    //         .row( $(this).parents('tr') )
+    //         .remove()
+    //         .draw();
+    // });
 
     
+
 </script>
       
 

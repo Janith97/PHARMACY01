@@ -135,7 +135,7 @@ class EmployeeController extends Controller
             $buttons ='<a  class="far fa-edit btn btn-sm btn-primary btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/').'">View</a> 
             <a class="far fa-edit btn btn-sm btn-success btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/edit').'">Edit</a>
             <input type="hidden" id="hiddenID" value="'.$ajaxdata->id.'">
-            <button class="far fa-trash-alt btn btn-sm btn-danger btn-rounded m-b-1 m-l-5" id="delete">Delete</button>';
+            <button id="remove" class="far fa-trash-alt btn btn-sm btn-danger btn-rounded m-b-1 m-l-5" id="delete">Delete</button>';
  
            
             return $buttons;

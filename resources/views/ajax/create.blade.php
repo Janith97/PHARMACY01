@@ -50,27 +50,64 @@
     var BASE = "{{url('/')}}/";
     $('form').on('submit', function(e){
     e.preventDefault();
-    alert('default prevented');
-    alert(BASE);
+    // alert('default prevented');
+    // alert(BASE);
  
     var params ={
         fname:$('#fname').val(),
         _token:$('[name="_token"]').val(),
        
     };
+    // $.ajax({
+    //     url: BASE + 'ajax',
+    //     type: 'POST',
+    //     dataType: 'JSON',
+    //     data: $.param(params),
+    //     success: function (response) {
+    //         // Swal.fire({
+    //         //     title: 'Store function activated',
+    //         //     text: response.Success,
+    //         //     icon: 'warning',
+    //         //     confirmButtonText: 'Cool'
+    //         //     // console.log(response);
+    //         // });
+            
+    //         // Swal.fire({
+    //         //     title: 'Input email address',
+    //         //     input: 'email',
+    //         //     icon :
+    //         //     inputLabel: 'Your email address',
+    //         //     inputPlaceholder: 'Enter your email address'
+    //         // })
+
+    //         // if (email) {
+    //         // Swal.fire(`Entered email: ${email}`)
+    //         // }
+    //         toastr.options.closeButton = true ;
+    //         toastr.error(response.success)
+          
+    //     }
+    // });
+    
+    // });
+    
     $.ajax({
         url: BASE + 'ajax',
         type: 'POST',
         dataType: 'JSON',
         data: $.param(params),
-        success: function (response) {
-            console.log(response);
-          
+        success: function (response)
+         {
+         
+        toastr.options.closeButton = true;  
+        toastr.warning(response.success)
+    
         }
+ 
     });
     
     });
-   
+
 </script>
 
 @endsection
