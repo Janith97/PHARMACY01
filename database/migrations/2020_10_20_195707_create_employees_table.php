@@ -20,6 +20,8 @@ class CreateEmployeesTable extends Migration
             $table->string('age');
             $table->string('address');
             $table->string('email');
+            $table->string('gender');
+
             $table->timestamps();
         });
     }

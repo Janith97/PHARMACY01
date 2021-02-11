@@ -6,6 +6,8 @@ use App\employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
+use Excel;
+use App\imports\EmployeeImport;
 
 class EmployeeController extends Controller
 {
@@ -17,7 +19,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = employee::all();
-        return view('index',compact('employees'));
+        return view('employee.index',compact('employees'));
     }
 
     /**
@@ -27,7 +29,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('employee.create');
     }
 
     /**
@@ -72,7 +74,7 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $employee = employee::find($id);
-        return view('show',compact('employee'));
+        return view('employee.show',compact('employee'));
     }
 
     /**
@@ -84,7 +86,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = employee::find($id);
-        return view('edit',compact('employee'));
+        return view('employee.edit',compact('employee'));
     }
 
     /**
@@ -100,7 +102,7 @@ class EmployeeController extends Controller
             'firstname' => 'required',
             'lastname'  => 'required',
             'age'       => 'required',
-            'address'   => 'required',
+            'address'   => 'required',  
             
         ]);
   
@@ -116,34 +118,50 @@ class EmployeeController extends Controller
      * @param  \App\employee  $employee
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(employee $employee)
+    {   
+        
+        //$employee->delete();
+        $learnAjax = employee::where('id',$learnAjax->id)->delete();
+
+    }
+
+    function remove(Request $request)
     {
-        $employee->delete();
-  
-        return redirect()->route('employee.index')
-                        ->with('success',' deleted successfully');
+
+        $learnAjax = employee::where('id',$request->id)->delete();
+        return response()->json(['status' => 'success', 'message' =>'Fucked']);
+      
     }
 
 
     public function indexpagetable(){
 
-        $ajaxdata = employee::all();  //employee= model name
-
+        $ajaxdata = employee::all();
+       
         return Datatables::of($ajaxdata)
-
         ->addColumn('action', function ($ajaxdata) {
-            $buttons ='<a  class="far fa-edit btn btn-sm btn-primary btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/').'">View</a> 
-            <a class="far fa-edit btn btn-sm btn-success btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/edit').'">Edit</a>
+            $buttons ='<a  class="fas fa-eye btn btn-sm btn-primary btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/').'"></a> 
+            <a class="far fa-edit btn btn-sm btn-success btn-rounded m-b-1 m-l-5" href="'.url('/employee/'.$ajaxdata->id.'/edit').'"></a>
             <input type="hidden" id="hiddenID" value="'.$ajaxdata->id.'">
-            <button id="remove" class="far fa-trash-alt btn btn-sm btn-danger btn-rounded m-b-1 m-l-5" id="delete">Delete</button>';
- 
+           
+            <button data-token="'. csrf_token() .'" class="far fa-trash-alt btn btn-sm btn-danger btn-rounded m-b-1 m-l-5" id="delete"></button>';
+
            
             return $buttons;
         })
 
         ->make(true);
 
-
-}
+    }
+    public function showimportpage(){
+        return view('export.import');
+    }
+    public function import(Request $request){
+        $file = $request->file('file')->store('import');
+        Excel::import(new EmployeeImport,$file);
+        return redirect()->route('employee.index')->with('Success','Excel file imported successfully');
+    }
 }
 

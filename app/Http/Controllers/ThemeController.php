@@ -15,7 +15,7 @@ class ThemeController extends Controller
     public function index()
     {
         //$themes = theme::all();
-        return view('theme.index');
+        return view('theme.medicine');
     }
 
     /**
@@ -25,7 +25,7 @@ class ThemeController extends Controller
      */
     public function create()
     {
-        
+        return view('theme.purchase');
     }
 
     /**
@@ -86,12 +86,18 @@ class ThemeController extends Controller
 
     public function new2()
     {
-        return view('theme.index2');
+        return view('theme.medicine');
     }
-
     public function new3()
     {
-        return view('theme.index3');
+        return view('theme.dashboard');
     }
+
+   
+
+    
+
+    
+
 
 }

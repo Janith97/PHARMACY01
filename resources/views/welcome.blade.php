@@ -81,8 +81,8 @@
 
             <div class="flex-center position-ref full-height">
                     <div class="top-right links">
-                        <a class="btn btn-primary" href="{{ route('employee.index') }}">Table</a>
-                        <a class="btn btn-primary" href="{{ route('employee.create') }}">Add Employee</a>   
+                        <a class="btn btn-primary" href="{{ route('employee.index') }}">employee</a>
+                        <a class="btn btn-primary" href="{{ route('student.index') }}">student</a>                         
                         <a class="btn btn-primary" href="{{ route('theme.index') }}">AdminLTE</a>   
                     </div>
               

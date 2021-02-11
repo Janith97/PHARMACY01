@@ -51,7 +51,7 @@ class PictureStoreController extends Controller
             $picture->save();
             return('Done!');
         }
-
+        else { echo "error" ; } 
     }
 
     /**
